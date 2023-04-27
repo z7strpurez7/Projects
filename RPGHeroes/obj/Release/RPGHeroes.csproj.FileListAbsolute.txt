@@ -1,0 +1,6 @@
+C:\Users\alito\github\Projects\RPGHeroes\bin\Release\RPGHeroes.exe.config
+C:\Users\alito\github\Projects\RPGHeroes\bin\Release\RPGHeroes.exe
+C:\Users\alito\github\Projects\RPGHeroes\bin\Release\RPGHeroes.pdb
+C:\Users\alito\github\Projects\RPGHeroes\obj\Release\RPGHeroes.csproj.CoreCompileInputs.cache
+C:\Users\alito\github\Projects\RPGHeroes\obj\Release\RPGHeroes.exe
+C:\Users\alito\github\Projects\RPGHeroes\obj\Release\RPGHeroes.pdb
