@@ -1,7 +1,0 @@
-C:\Users\alito\github\Projects\RPGHeroes\bin\Debug\RPGHeroes.exe.config
-C:\Users\alito\github\Projects\RPGHeroes\bin\Debug\RPGHeroes.exe
-C:\Users\alito\github\Projects\RPGHeroes\bin\Debug\RPGHeroes.pdb
-C:\Users\alito\github\Projects\RPGHeroes\obj\Debug\RPGHeroes.csproj.AssemblyReference.cache
-C:\Users\alito\github\Projects\RPGHeroes\obj\Debug\RPGHeroes.csproj.CoreCompileInputs.cache
-C:\Users\alito\github\Projects\RPGHeroes\obj\Debug\RPGHeroes.exe
-C:\Users\alito\github\Projects\RPGHeroes\obj\Debug\RPGHeroes.pdb
