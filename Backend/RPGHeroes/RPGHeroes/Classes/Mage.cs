@@ -21,7 +21,6 @@ namespace RPGHeroes
 
         public Mage(string name)
         {
-            
             Name = name;
             MyClass = "Mage";
             HeroAttributes = new HeroAttribute(1, 1, 8);

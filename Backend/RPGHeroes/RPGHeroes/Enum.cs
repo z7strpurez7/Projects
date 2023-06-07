@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    class Enum
+    public class Enum
     {
         public enum Slot
         {

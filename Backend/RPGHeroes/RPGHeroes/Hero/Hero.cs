@@ -30,21 +30,20 @@ namespace RPGHeroes
         public string Name { get { return name; } set { name = value; } }
         public int Level { get => level; set => level = value; }
 
-        public int LevelAttributes() { return heroAttributes.Sum(heroAttributes); }
-        public int TotalAttributes() { return HeroAttributes.Sum(equipmentAttributes, heroAttributes); }
+        public int LevelAttributes => HeroAttributes.Sum(heroAttributes);
+        public int TotalAttributes => HeroAttributes.Sum(equipmentAttributes, heroAttributes); 
 
         public virtual void LevelUp() { Level++; }
         public virtual int DamagingAttribute { get; }
         public string Display()
-
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name: " +Name);
             sb.AppendLine("Class: " + MyClass);
             sb.AppendLine("Level " + Level);
             sb.AppendLine("Attributes:"+"Strength: " + HeroAttributes.Strength + " | " + "Dexterity: " + HeroAttributes.Dexterity + " | " + "Intelligence: " + HeroAttributes.Intelligence);
-            sb.AppendLine("Level Attributes: " + LevelAttributes());
-            sb.AppendLine("Total Attributes: " + TotalAttributes());
+            sb.AppendLine("Level Attributes: " + LevelAttributes);
+            sb.AppendLine("Total Attributes: " + TotalAttributes);
             sb.AppendLine("CurrentDamage: " + Damage());
             sb.AppendLine("");
         
