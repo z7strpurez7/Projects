@@ -73,3 +73,4 @@ C:\Users\alito\github\Projects\Backend\CustomerDBManager\bin\Debug\zh-Hant\Micro
 C:\Users\alito\github\Projects\Backend\CustomerDBManager\obj\Debug\CustomerDBManager.csproj.CopyComplete
 C:\Users\alito\github\Projects\Backend\CustomerDBManager\obj\Debug\CustomerDBManager.exe
 C:\Users\alito\github\Projects\Backend\CustomerDBManager\obj\Debug\CustomerDBManager.pdb
+C:\Users\alito\github\Projects\Backend\CustomerDBManager\obj\Debug\CustomerDBManager.csproj.SuggestedBindingRedirects.cache

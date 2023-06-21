@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "BkJrKGhEzeKaOiAKSLXp8ChYkJdzRRd/hP4CVjIxTc8=",
+  "Source": "movieCharacterAPI",
+  "BasePath": "_content/movieCharacterAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
