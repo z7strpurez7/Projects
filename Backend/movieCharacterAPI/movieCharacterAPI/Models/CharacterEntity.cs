@@ -10,10 +10,7 @@ namespace movieCharacterAPI.Models
         public string? Alias { get;  set; }
         public required string Gender{ get; set; }
         public required string Picture { get; set; }
-
-        //Navigationproperty
         //set relation a Character has one or more movies
         public ICollection<MovieEntity> Movies { get; set; }
-
     }
 }

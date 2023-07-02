@@ -9,7 +9,7 @@ namespace movieCharacterAPI.Context
         {  }
         // dbSets for each entity
         public DbSet<MovieEntity> Movies { get; set; }
-        public DbSet<FranchiseEntity> Francises { get; set; }
+        public DbSet<FranchiseEntity> Franchises { get; set; }
         public DbSet<CharacterEntity> Characters { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

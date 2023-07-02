@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dwl/zYc+9JmIaUcyR9GQogznhc3Xcuy4E2fDBpIHdoOZgVd8oFpmlHjBd8ovQwJKIytjaXVa54ZdhSZs4IBUhw==",
+  "dgSpecHash": "gNnVy4sx0gNIIOKkcfFutHCUiZvvdFPb8WGArw6O7G1MwyVEzRQT/k7pUJGAo1PAlkIw5K//MJ+AOJa0rYkGTg==",
   "success": true,
   "projectFilePath": "C:\\Users\\alito\\github\\Projects\\Backend\\movieCharacterAPI\\movieCharacterAPI\\movieCharacterAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\alito\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
@@ -72,7 +73,7 @@
     "C:\\Users\\alito\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.11\\microsoft.codeanalysis.razor.6.0.11.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.4.0\\microsoft.codeanalysis.scripting.common.4.4.0.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.4.0\\microsoft.codeanalysis.workspaces.common.4.4.0.nupkg.sha512",
-    "C:\\Users\\alito\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\alito\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\microsoft.diasymreader\\1.4.0\\microsoft.diasymreader.1.4.0.nupkg.sha512",
