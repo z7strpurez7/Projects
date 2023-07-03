@@ -4,6 +4,7 @@ namespace movieCharacterAPI.Dto
 {
     public class FranchiseDtos
     {
+        ///DTOs
         public record FranchiseDto(int FranchiseId, string Name, string Description, List<MovieTitlesDto> Movies);
         public record PostFranchiseDto(string Name, string Description);
         

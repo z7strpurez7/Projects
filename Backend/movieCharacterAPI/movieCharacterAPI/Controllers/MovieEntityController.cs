@@ -72,22 +72,25 @@ namespace movieCharacterAPI.Controllers
                     e.Trailer,
                     e.Character.Select(c => new CharacterTitle(c.CharacterId, c.Name)).ToList(),
                     e.Franchise.Name)).ToListAsync();
+                if (result is null || result.Count() is 0)
+                {
+                    return NoContent();
+                }
             }
             catch (Exception _)
             {
                 return BadRequest("An error accoured during request processing");
             }
-            if (result is null || result.Count() is 0)
-            {
-                return NoContent();
-            }
+           
 
             return Ok(result);
         }
-        /// <summary>
-        /// Returns a list of movies without all info (DTO) and ok(200), returns 400 if bad request
-        /// And 204 if no content
-        /// </summary>
+        ///Initializes a variable as a list of the Dto
+        ///Retrieves data from context table
+        ///maps the data to Dto
+        ///Returns a list of DTO,
+        ///If something goes wrong, returns bad Request
+        ///if table is empty returns Not Found
 
 
         //Get movie by ID
@@ -112,23 +115,25 @@ namespace movieCharacterAPI.Controllers
                 e.Franchise.Name))
                 .FirstOrDefaultAsync();
                 //Looks for first element or default
-            }
-
+                if(result is null) {return NoContent();}
+            } 
             catch (Exception _)
             {
                 return BadRequest("An error accoured during request processing");
             }
 
-            if (result is null)
-            {
-                return NoContent();
-            }
 
             return Ok(result);
         }
-        /// <summary>
-        /// returns the other get request
-        /// </summary>
+        /// gets Param id from request
+        /// Creates a var and gets the data from specified id
+        /// returns notfound if empty
+        /// returns ok with the Dto <summary>
+        /// gets Param id from request
+        ///Returns BadReuest if something goes wrong
+        ///
+
+
         [HttpPost("Post")]
         public async Task<IActionResult> PostMovie( PostMovieDto movieDto)
         {
@@ -171,7 +176,13 @@ namespace movieCharacterAPI.Controllers
             }
 
             return new ObjectResult(movie.MovieId) { StatusCode = (int)HttpStatusCode.Created};
-        } 
+        }
+        //Takes a parameter postMovieDto with data from input
+        //returns nocontent if PostmovieDto is empty
+        //Takes the values from postmovieDto into movie
+        //ads the data to Movies table and saves db changes
+        //returns objectResult with the the id and sets the statuscode to
+        //"Created" which returns 201 and indicates that the movie was successfully created
 
 
         //Update a movie with the option to set movie to a franchise
@@ -239,8 +250,10 @@ namespace movieCharacterAPI.Controllers
             }
             return Ok();
         }
-        //deletes by Id, returns not found if id movie is null.
-
+        //Identifies and deletes the Movie with the given Id
+        //returns not found if not found
+        //Returns OK()
+        //
     }
 }
 

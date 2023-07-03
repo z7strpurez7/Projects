@@ -2,6 +2,7 @@
 {
     public class FranchiseEntity
     {
+        //Properties
         public int FranchiseId { get; set; }
         public required string Name { get; set; }
         public required string Description { get; set; }

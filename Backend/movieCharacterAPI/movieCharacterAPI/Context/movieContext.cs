@@ -52,6 +52,7 @@ namespace movieCharacterAPI.Context
                 entity.Property(x => x.Picture).HasMaxLength(100);
                 entity.HasMany(x => x.Movies)
                 .WithMany(e => e.Character);
+               
             });
         
         }

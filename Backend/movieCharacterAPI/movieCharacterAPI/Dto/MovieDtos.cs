@@ -11,6 +11,7 @@ namespace movieCharacterAPI.Dto
 {
     public class MovieDtos
     {
+        ///DTOs
         public record GetMovieByIdQuery([FromRoute] int Id);
         public record UpdateMovieCommand(int Id, UpdateMovieDto Dto);
         public record MovieTitlesDto(int MovieId, string Title);

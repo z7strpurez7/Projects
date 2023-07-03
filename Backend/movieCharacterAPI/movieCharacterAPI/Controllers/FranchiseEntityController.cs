@@ -18,7 +18,7 @@ namespace movieCharacterAPI.Controllers
             _context = context;
         }
         //Get all Franchises
-        [HttpGet("Franchise/AllFranchises")]
+        [HttpGet("AllFranchises")]
         public async Task<IActionResult> GetAllFranchises()
         {
             List<FranchiseDto> franchises = null;
@@ -35,10 +35,11 @@ namespace movieCharacterAPI.Controllers
             if (franchises == null || franchises.Count is 0){return NoContent();}
             return Ok(franchises);
         }
+        //A list of FranchiseDtos are collected from Franchises table
         ///Returns "ok" result with the list of franchises as responsebody
         ///If an error occurs, it returns a "BadRequest"
         ///also if the table is empty(null), it returns no content
-        [HttpGet("Franchise/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetFranchiseById([FromRoute] int id)
         {
             FranchiseDto? result = null;
@@ -57,6 +58,12 @@ namespace movieCharacterAPI.Controllers
             }
             return Ok(result);
         }
+        /// gets Param id from request
+        /// Creates a var and gets the data from specified id
+        /// returns notfound if empty
+        /// returns ok with the Dto <summary>
+        /// gets Param id from request
+        ///Returns BadRequest if something goes wrong
 
         //POST
         [HttpPost]
@@ -79,6 +86,12 @@ namespace movieCharacterAPI.Controllers
             }catch (Exception ex) { Console.WriteLine(ex); }
 
             return new ObjectResult(franchise.FranchiseId) { StatusCode = (int)HttpStatusCode.Created };
+            //Takes a parameter franchiseDto with data from input
+            //returns nocontent if franchiseDto is empty
+            //Takes the values from franchiseDto into movie
+            //ads the data to Franchise table and saves db changes
+            //returns objectResult with the the id and sets the statuscode to
+            //"Created" which returns 201 and indicates that the franchise was successfully created
 
         }
 
@@ -107,8 +120,16 @@ namespace movieCharacterAPI.Controllers
 
             return new ObjectResult(franchise.FranchiseId) { StatusCode= (int)HttpStatusCode.Accepted };
         }
+        /// UpdateFranchise updates the values, you have to type in every value 
+        /// or it will be default "string". 
+        /// UpdateValue allows you to change values
+        /// If updatebody = null -> returns BadRequest. <summary>
+        /// UpdateMovie updates the values, you have to type in every value 
+        /// Returns BadRequest if Updatebody is invalid
 
-        [HttpDelete("Franchise/{id}")]
+
+
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFranchiseById([FromRoute] int id)
         {
 
@@ -134,7 +155,12 @@ namespace movieCharacterAPI.Controllers
             }
             return Ok();
         }
-
+        //Identifies and deletes the Movie with the given Id
+        //returns not found if not found
+        //Returns OK()
+        //
     }
+
 }
+
     

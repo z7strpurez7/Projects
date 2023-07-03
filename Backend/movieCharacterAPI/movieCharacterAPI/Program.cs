@@ -17,7 +17,6 @@ builder.Services.AddDbContext<MovieContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,12 +49,13 @@ void SeedData(MovieContext _context)
     var mov3 = new MovieEntity { Title = "Alien 2", Genre = "Drama, scifi, horror", ReleaseYear = "2022", Director = "Director 2", Picture = "https://example.com/movie2.jpg", Trailer = "https://youtube.com/trailer2", FranchiseId = 1, Character = new List<CharacterEntity>(), Franchise = F1 };
     var mov4 = new MovieEntity { Title = "Predator 2", Genre = "Drama,horror, scifi", ReleaseYear = "2022", Director = "Director 2", Picture = "https://example.com/movie2.jpg", Trailer = "https://youtube.com/trailer2", FranchiseId = 2, Character = new List<CharacterEntity>(), Franchise = F2 };
 
-
+    //Add characters to movies
     mov1.Character.Add(char1);
     mov1.Character.Add(char3);
     mov2.Character.Add(char2);
     mov3.Character.Add(char1);
     mov4.Character.Add(char2);
+    //add movies to context
     _context.Movies.Add(mov1);
     _context.Movies.Add(mov2);
     _context.Movies.Add(mov3);
