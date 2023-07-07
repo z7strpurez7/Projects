@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using movieCharacterAPI.Context;
 using movieCharacterAPI.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -8,14 +11,35 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 
 
 //Add dbContext
 builder.Services.AddDbContext<MovieContext>(option =>
 //Getting connectionstring from appsettings.json
+
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v1",
+        Title = "MovieCharacter-API",
+        Description = "Keep track of your movies and franchises",
+        Contact = new OpenApiContact
+        {
+            Name = "Ali Todashev",
+            Url = new Uri("https://github.com/z7strpurez7/Projects/tree/2d427aff34e8609afa93ca382750a54d17fd819f/Backend/movieCharacterAPI")
+        }
+    });
+    options.IncludeXmlComments(xmlPath);
+});
+
 
 var app = builder.Build();
 

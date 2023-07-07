@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>movieCharacterAPI</name>
+    </assembly>
+    <members>
+        <member name="M:movieCharacterAPI.Controllers.CharacterEntityController.GetAllCharacterDetails">
+            <summary>
+            Get All character information, all movies and characters
+            </summary>
+            <returns>A list with all details</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.CharacterEntityController.GetAllCharacterTitles">
+            <summary>
+            Returns all names of the Characters
+            </summary>
+            <returns>A list of Character names</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.CharacterEntityController.GetCharacterById(System.Int32)">
+            <summary>
+            Get Character details by Unique identifier 
+            </summary>
+            <param name="id">Unique identifier</param>
+            <returns>Character details</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.CharacterEntityController.AddCharacter(movieCharacterAPI.Dto.CharacterDtos.PostCharacterDto)">
+            <summary>
+            Post a Character
+            </summary>
+            <param name="characterDto">Character creation requestBody</param>
+            <returns>ObjectResult  Character Id and status code 201(Created) </returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.CharacterEntityController.UpdateCharacter(movieCharacterAPI.Dto.CharacterDtos.UpdateCharacterCommand)">
+            <summary>
+            Edit a Existing Character with the details in RequestBody
+            </summary>
+            <param name="command">Identifier and requestBody details</param>
+            <returns>ObjectResult Character Id and status code 202(Accepted)</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.CharacterEntityController.DeleteCharacterById(System.Int32)">
+            <summary>
+            Delete a Character with the given identifier
+            </summary>
+            <param name="id">Character Identifier</param>
+            <returns>Status Ok 200</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.GetCharactersByFranchiseId(System.Int32)">
+            <summary>
+            Get all Characters related details in given a specific Franchise
+            </summary>
+            <param name="id">Franchise identifier</param>
+            <returns>List of Characters</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.GetAllFranchises">
+            <summary>
+            Get all Franchises
+            </summary>
+            <returns>Returns a list of Franchises</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.GetFranchiseById(System.Int32)">
+            <summary>
+            Get Franchise by Unique identifier
+            </summary>
+            <param name="id">Unique identifier</param>
+            <returns>A FranchiseDto</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.PostFranchise(movieCharacterAPI.Dto.FranchiseDtos.PostFranchiseDto)">
+            <summary>
+            Create a new Franchise
+            </summary>
+            <param name="franchiseDto"></param>
+            <returns>Object Result with the Id and status code Created</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.UpdateFranchise(movieCharacterAPI.Dto.FranchiseDtos.UpdateFranchiseCommand)">
+            <summary>
+            Update existing details in a given Franchise Identifier
+            </summary>
+            <param name="command">Id and RequestBodyu</param>
+            <returns>ObjectResult with Id and Status Accepted</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.UpdateFranchiseMovies(movieCharacterAPI.Dto.FranchiseDtos.UpdateFranchiseMovies)">
+            <summary>
+            Add/Update movies in a given Franchise (Replaces existing Movies)
+            </summary>
+            <param name="identifiers">Franchise id and List of Movie Ids</param>
+            <returns>Ok with FranchiseId</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.FranchiseEntityController.DeleteFranchiseById(System.Int32)">
+            <summary>
+            Delete Franchise by Identifier
+            </summary>
+            <param name="id">Unique Identifier</param>
+            <returns>Ok 200</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.GetAllMovieTitles">
+            <summary>
+            Gets all movie names
+            </summary>
+            <returns>List of MovieTitleDto</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.GetAllMovies">
+            <summary>
+            Gets all movies details, including Character and Franchise names
+            </summary>
+            <returns>List of Movies with Character/Franchise names</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.GetMovieById(System.Int32)">
+            <summary>
+            Gets a specific movie based on id
+            </summary>
+            <param name="id">Movie Identifier</param>
+            <returns></returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.PostMovie(movieCharacterAPI.Dto.MovieDtos.PostMovieDto)">
+            <summary>
+            Takes in moviedetails into specified movieDto and Posts
+            a new movie with the details
+            </summary>
+            <param name="movieDto"></param>
+            <returns>The created Movie Id and status code 201(Created)</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.UpdateMovie(movieCharacterAPI.Dto.MovieDtos.UpdateMovieCommand)">
+            <summary>
+            Updates movie details to the given specified Id
+            </summary>
+            <param name="command">New movie details and the movieIdentifier</param>
+            <returns>The modified movieId and status 202(Accepted)</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.UpdateMovieCharacters(movieCharacterAPI.Dto.MovieDtos.UpdateMovieCharacterRelation)">
+            <summary>
+            Adds the given Characters to a movie (Replaces existing Characters with the new ones)
+            </summary>
+            <param name="identifiers">Movie identifier and Character Identifiers</param>
+            <returns>Status 200 Ok with Movie identifier</returns>
+        </member>
+        <member name="M:movieCharacterAPI.Controllers.MovieEntityController.DeleteMovieById(System.Int32)">
+            <summary>
+            Deletes a movie by given id specifier
+            </summary>
+            <param name="id"></param>
+            <returns>200 Ok</returns>
+        </member>
+        <member name="T:movieCharacterAPI.Dto.CharacterDtos.CharacterDto">
+            DTOs
+        </member>
+        <member name="M:movieCharacterAPI.Dto.CharacterDtos.CharacterDto.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.Collections.Generic.List{movieCharacterAPI.Dto.MovieDtos.MovieDto})">
+            DTOs
+        </member>
+        <member name="T:movieCharacterAPI.Dto.FranchiseDtos.FranchiseDto">
+            DTOs
+        </member>
+        <member name="M:movieCharacterAPI.Dto.FranchiseDtos.FranchiseDto.#ctor(System.Int32,System.String,System.String,System.Collections.Generic.List{movieCharacterAPI.Dto.MovieDtos.MovieTitlesDto})">
+            DTOs
+        </member>
+        <member name="T:movieCharacterAPI.Dto.MovieDtos.GetMovieByIdQuery">
+            DTOs
+        </member>
+        <member name="M:movieCharacterAPI.Dto.MovieDtos.GetMovieByIdQuery.#ctor(System.Int32)">
+            DTOs
+        </member>
+        <member name="T:movieCharacterAPI.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:movieCharacterAPI.Migrations.UpdatedPrimaryKeys1">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedPrimaryKeys1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedPrimaryKeys1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedPrimaryKeys1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:movieCharacterAPI.Migrations.FkNullable">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.FkNullable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.FkNullable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.FkNullable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:movieCharacterAPI.Migrations.UpdatedKeyLengths">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedKeyLengths.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedKeyLengths.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedKeyLengths.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:movieCharacterAPI.Migrations.UpdatedFranchiseTableName">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedFranchiseTableName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedFranchiseTableName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:movieCharacterAPI.Migrations.UpdatedFranchiseTableName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -6,8 +6,9 @@ namespace movieCharacterAPI.Dto
     {
         ///DTOs
         public record FranchiseDto(int FranchiseId, string Name, string Description, List<MovieTitlesDto> Movies);
+    
         public record PostFranchiseDto(string Name, string Description);
-        
         public record UpdateFranchiseCommand(int Id, PostFranchiseDto FranchiseDto);
+        public record UpdateFranchiseMovies(int FranchiseId, int[] MovieIds);
     }
 }

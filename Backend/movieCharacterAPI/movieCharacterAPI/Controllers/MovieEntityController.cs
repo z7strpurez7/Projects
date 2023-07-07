@@ -13,44 +13,52 @@ using static movieCharacterAPI.Dto.MovieDtos;
 
 using static movieCharacterAPI.Dto.CharacterDtos.CharacterTitle;
 using static movieCharacterAPI.Dto.CharacterDtos;
-
-
-
+using NuGet.Packaging;
+using System.Net.Mime;
+using AutoMapper;
 
 namespace movieCharacterAPI.Controllers
 {
     //MovieEntityController inherits from asp.net controllerbase
     [Route("[controller]")]
+    [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class MovieEntityController : ControllerBase
     {
         private readonly MovieContext _context;
-
-        public MovieEntityController(MovieContext context)
+        private readonly IMapper _mapper;
+        public MovieEntityController(MovieContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
-        //GetMovieTitles and IDs
-        [HttpGet("MovieNames")]
+        /// <summary>
+        /// Gets all movie names
+        /// </summary>
+        /// <returns>List of MovieTitleDto</returns>
+        [HttpGet]
         public async Task<IActionResult> GetAllMovieTitles()
         {
-
             List<MovieTitlesDto>? titles = null;
             try
             {
                 titles = await _context.Movies.Select(e => new MovieTitlesDto(
                    e.MovieId,
                    e.Title)).ToListAsync();
-            } catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            } catch (Exception ex){ return BadRequest(ex.Message); }
             return Ok(titles);
         }
-        //GetRequest for Title and Id (Just to make it easier to check out the movies)
 
-        [HttpGet("GetAllMovieDetails")]
+
+        /// <summary>
+        /// Gets all movies details, including Character and Franchise names
+        /// </summary>
+        /// <returns>List of Movies with Character/Franchise names</returns>
+        [HttpGet("Details")]
         public async Task<IActionResult> GetAllMovies()
         {
             //Getting movies with DTO, not displaying all types of info
@@ -72,28 +80,20 @@ namespace movieCharacterAPI.Controllers
                     e.Trailer,
                     e.Character.Select(c => new CharacterTitle(c.CharacterId, c.Name)).ToList(),
                     e.Franchise.Name)).ToListAsync();
-                if (result is null || result.Count() is 0)
-                {
-                    return NoContent();
-                }
-            }
-            catch (Exception _)
-            {
-                return BadRequest("An error accoured during request processing");
-            }
-           
+                if (result is null || result.Count() is 0) {return NoContent(); }
+
+            }catch (Exception _)  {return BadRequest("An error accoured during request processing"); }
 
             return Ok(result);
         }
-        ///Initializes a variable as a list of the Dto
-        ///Retrieves data from context table
-        ///maps the data to Dto
-        ///Returns a list of DTO,
-        ///If something goes wrong, returns bad Request
-        ///if table is empty returns Not Found
+   
 
 
-        //Get movie by ID
+        /// <summary>
+        /// Gets a specific movie based on id
+        /// </summary>
+        /// <param name="id">Movie Identifier</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMovieById([FromRoute] int id)
         {
@@ -115,37 +115,27 @@ namespace movieCharacterAPI.Controllers
                 e.Franchise.Name))
                 .FirstOrDefaultAsync();
                 //Looks for first element or default
-                if(result is null) {return NoContent();}
-            } 
-            catch (Exception _)
-            {
-                return BadRequest("An error accoured during request processing");
+                if (result is null) { return NoContent(); }
             }
-
+            catch (Exception _){ return BadRequest("An error accoured during request processing");}
 
             return Ok(result);
         }
-        /// gets Param id from request
-        /// Creates a var and gets the data from specified id
-        /// returns notfound if empty
-        /// returns ok with the Dto <summary>
-        /// gets Param id from request
-        ///Returns BadReuest if something goes wrong
-        ///
 
 
-        [HttpPost("Post")]
-        public async Task<IActionResult> PostMovie( PostMovieDto movieDto)
+        /// <summary>
+        /// Takes in moviedetails into specified movieDto and Posts
+        /// a new movie with the details
+        /// </summary>
+        /// <param name="movieDto"></param>
+        /// <returns>The created Movie Id and status code 201(Created)</returns>
+        [HttpPost]
+        public async Task<IActionResult> PostMovie(PostMovieDto movieDto)
         {
             MovieEntity? movie = null;
             try
             {
-                if(movieDto is null)
-                {
-                    return BadRequest();
-                }
-              
-
+                if (movieDto is null){return BadRequest();}
                 movie = new MovieEntity
                 {
                     Title = movieDto.MovieTitle,
@@ -154,47 +144,27 @@ namespace movieCharacterAPI.Controllers
                     Director = movieDto.Director,
                     Picture = movieDto.Picture,
                     Trailer = movieDto.Trailer,
-                    FranchiseId = movieDto.franchiseId,
-               /*     Character = movieDto.Character.Select(e => new CharacterEntity
-                    {
-                        Name = e.Name,
-                        Alias = e.Alias,
-                        Gender = e.Gender,
-                        Picture = e.Picture,
-                        Movies = new List<MovieEntity>()
-                    }).ToList(); */
-                // Franchise = new FranchiseEntity {Name = movieDto.FranchiseName, Description = movieDto.FranchiseDescription, Movies = new List<MovieEntity>()}
-            };
-                    
+                    FranchiseId = movieDto.franchiseId,    
+                };
                 await _context.Movies.AddAsync(movie);
                 await _context.SaveChangesAsync();
-
             }
-            catch (Exception ex)
-            {
-                return BadRequest("An error occurred while processing the request.");
-            }
-
-            return new ObjectResult(movie.MovieId) { StatusCode = (int)HttpStatusCode.Created};
+            catch (Exception ex)  {return BadRequest("An error occurred while processing the request."); }
+            return new ObjectResult(movie.MovieId) { StatusCode = (int)HttpStatusCode.Created };
         }
-        //Takes a parameter postMovieDto with data from input
-        //returns nocontent if PostmovieDto is empty
-        //Takes the values from postmovieDto into movie
-        //ads the data to Movies table and saves db changes
-        //returns objectResult with the the id and sets the statuscode to
-        //"Created" which returns 201 and indicates that the movie was successfully created
+    
 
-
-        //Update a movie with the option to set movie to a franchise
-        [HttpPut("Update")]
+        /// <summary>
+        /// Updates movie details to the given specified Id
+        /// </summary>
+        /// <param name="command">New movie details and the movieIdentifier</param>
+        /// <returns>The modified movieId and status 202(Accepted)</returns>
+        [HttpPut]
         public async Task<IActionResult> UpdateMovie([FromBody] UpdateMovieCommand command)
         {
-            if (command is null)
-            {
-                return BadRequest();
-            }
+            if (command is null) { return BadRequest(); }
+
             var movie = await _context.Movies.FirstOrDefaultAsync(e => e.MovieId == command.Id);
-            
             try
             {
                 movie.Title = command.Dto.MovieTitle;
@@ -203,33 +173,56 @@ namespace movieCharacterAPI.Controllers
                 movie.Director = command.Dto.Director;
                 movie.Picture = command.Dto.Picture;
                 movie.Trailer = command.Dto.Trailer;
-                if(command.Dto.franchiseId == 0)
+
+                if (command.Dto.franchiseId == 0)
                 {
                     movie.FranchiseId = null;
                 } else
                 {
                     movie.FranchiseId = command.Dto.franchiseId;
                 }
-              
-
                 await _context.SaveChangesAsync();
             }
-            catch (Exception _)
-            {
-                return BadRequest("An error accoured during request processing");
-            }
+            catch (Exception _){ return BadRequest("An error accoured during request processing"); }
 
             return new ObjectResult(movie.MovieId) { StatusCode = (int)HttpStatusCode.Accepted };
         }
-        /// UpdateMovie updates the values, you have to type in every value 
-        /// or it will be default "string". When testing note that "releaseYear"
-        /// only allows 5 characters. 
-        /// UpdateValue only allows you to change values, also you are allowed to update the franchiseId
-        /// If updatebody = null -> returns BadRequest. <summary>
-        /// UpdateMovie updates the values, you have to type in every value 
-        /// Returns BadRequest if Updatebody is invalid
+     
 
-        //Delete movie by id
+        /// <summary>
+        /// Adds the given Characters to a movie (Replaces existing Characters with the new ones)
+        /// </summary>
+        /// <param name="identifiers">Movie identifier and Character Identifiers</param>
+        /// <returns>Status 200 Ok with Movie identifier</returns>
+        [HttpPut("SetCharacters")]
+        public async Task<IActionResult> UpdateMovieCharacters([FromBody] UpdateMovieCharacterRelation identifiers)
+        {
+            try
+            {
+                if (identifiers.CharacterId == null || identifiers.CharacterId.Length == 0) {  return BadRequest("CharacterId array is empty.");}
+
+                var movie = await _context.Movies.Include(m => m.Character).FirstOrDefaultAsync(e => e.MovieId == identifiers.MovieId);
+                if (movie is null) {return NotFound("Movie not found."); }
+
+                var characters = await _context.Characters.Where(c => identifiers.CharacterId.Contains(c.CharacterId)).ToListAsync();
+                if (characters.Count != identifiers.CharacterId.Length){ return NotFound("One or more characters not found.");}
+
+                movie.Character.Clear();
+                movie.Character.AddRange(characters);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception _) {  return BadRequest("An error occurred during request processing."); }
+
+            return Ok(identifiers.MovieId);
+        }
+
+
+        /// <summary>
+        /// Deletes a movie by given id specifier
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>200 Ok</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovieById([FromRoute] int id)
         {
@@ -238,16 +231,10 @@ namespace movieCharacterAPI.Controllers
                 var movie = await _context.Movies.FindAsync(id);
                 if (movie == null) { return NotFound();
  }
-
                 _context.Movies.Remove(movie);
                 await _context.SaveChangesAsync();
-
-             
             }
-            catch (Exception)
-            {
-                return BadRequest("An error occurred during request processing");
-            }
+            catch (Exception) { return BadRequest("An error occurred during request processing"); }
             return Ok();
         }
         //Identifies and deletes the Movie with the given Id

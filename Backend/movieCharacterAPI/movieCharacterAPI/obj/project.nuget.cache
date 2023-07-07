@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "gNnVy4sx0gNIIOKkcfFutHCUiZvvdFPb8WGArw6O7G1MwyVEzRQT/k7pUJGAo1PAlkIw5K//MJ+AOJa0rYkGTg==",
+  "dgSpecHash": "dVnX0uHH5HSb8sA6P3azTlQljLRclYtVFCs7hCQriBDv7NiCLkofHdagBI8I9v9eO45KLRGh13V8l9zrQu05vg==",
   "success": true,
   "projectFilePath": "C:\\Users\\alito\\github\\Projects\\Backend\\movieCharacterAPI\\movieCharacterAPI\\movieCharacterAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alito\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\alito\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\alito\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

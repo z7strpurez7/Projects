@@ -16,8 +16,9 @@ namespace movieCharacterAPI.Dto
         public record UpdateMovieCommand(int Id, UpdateMovieDto Dto);
         public record MovieTitlesDto(int MovieId, string Title);
         public record MovieDto(int MovieId, string Title,string Genre,string ReleaseYear,string Director,string Picture,string Trailer,List<CharacterTitle> Characters, string FranchiseName);
-        public record PostMovieDto(string MovieTitle, string Genre, string ReleaseYear, string Director, string Picture, string Trailer, int? franchiseId, List<CharacterEntity>? Character);
+        public record MovieCharactersDto(List<CharacterTitle> MovieCharacters);
+        public record PostMovieDto(string MovieTitle, string Genre, string ReleaseYear, string Director, string Picture, string Trailer, int? franchiseId);
         public record UpdateMovieDto(string MovieTitle, string Genre, string ReleaseYear, string Director, string Picture, string Trailer, int? franchiseId);
-
+        public record UpdateMovieCharacterRelation(int MovieId, int[] CharacterId);
     }
 }

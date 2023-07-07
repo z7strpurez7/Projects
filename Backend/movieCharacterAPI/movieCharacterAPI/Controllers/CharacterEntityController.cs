@@ -1,25 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using movieCharacterAPI.Context;
 using movieCharacterAPI.Dto;
 using movieCharacterAPI.Models;
 using System.Net;
+using System.Net.Mime;
 using static movieCharacterAPI.Dto.CharacterDtos;
 using static movieCharacterAPI.Dto.MovieDtos;
 
 namespace movieCharacterAPI.Controllers
 {
     [Route("[controller]")]
+    [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class CharacterEntityController : ControllerBase
     {
         private readonly MovieContext _context;
-        public CharacterEntityController(MovieContext context)
+        private readonly IMapper _mapper;
+        public CharacterEntityController(MovieContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        // Prints out All characters, all the movies the act in + every character in the movie 
-        [HttpGet("GetAllCharacterRelatedDetails")]
+        /// <summary>
+        /// Get All character information, all movies and characters
+        /// </summary>
+        /// <returns>A list with all details</returns>
+        [HttpGet]
         public async Task<IActionResult> GetAllCharacterDetails()
         {
             List<CharacterDto> characters = null;
@@ -42,23 +53,17 @@ namespace movieCharacterAPI.Controllers
                     e.Franchise.Name)).ToList())).ToListAsync();
 
                 if (characters == null) { return NotFound(); }
-
-            } catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            } catch (Exception ex) {return BadRequest(ex.Message);}
             return Ok(characters);
         }
-        ///Initializes a variable as a list of the Dto
-        ///Retrieves data from Charactertable from context
-        ///maps the data to characterDto
-        ///Returns a list of CharacterDTO,
-        ///If something goes wrong, returns bad Request
-        ///if Characters table is empty returns Not Found
+
      
 
-        //Prints out all Character names with Id
-        [HttpGet("CharacterTitles")]
+        /// <summary>
+        /// Returns all names of the Characters
+        /// </summary>
+        /// <returns>A list of Character names</returns>
+        [HttpGet("Titles")]
         public async Task<IActionResult> GetAllCharacterTitles()
         {
             List<CharacterTitle> characters = null;
@@ -66,23 +71,22 @@ namespace movieCharacterAPI.Controllers
             {
                 characters = await _context.Characters.Select(e => new CharacterTitle(
                 e.CharacterId, e.Name)).ToListAsync();
+
                 if (characters == null) { return NotFound(); }
-            } catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            } catch (Exception ex){return BadRequest(ex.Message);}
             return Ok(characters);
         }
-        //Retrieves data from CharacterTable and maps it to CharacterTitle
-        //in order to show just titles and id
-        //Returns a list of CharacterTitle
-        ///If something goes wrong, returns bad Request
-        ///if Characters list is empty returns notfound
 
 
 
-        //Prints out character by Id, prints out details aswell(but only characterTitles)
-        [HttpGet("Character/{id}")]
+
+    
+        /// <summary>
+        /// Get Character details by Unique identifier 
+        /// </summary>
+        /// <param name="id">Unique identifier</param>
+        /// <returns>Character details</returns>
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCharacterById(int id)
         {
             CharacterDto? result = null;
@@ -103,26 +107,25 @@ namespace movieCharacterAPI.Controllers
                     e.Trailer,
                     e.Character.Select(e => new CharacterTitle(e.CharacterId, e.Name)).ToList(),
                     e.Franchise.Name)).ToList())).FirstOrDefaultAsync();
+
                 if (result == null) { return NotFound(); }
-            } catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            } catch (Exception ex){return BadRequest(ex);}
             return Ok(result);
         }
-        /// gets Param id from request
-        /// Creates a var and gets the data from specified id
-        /// returns notfound if empty
-        /// returns ok with the Dto
+      
 
-
-        //Add a regular CharacterEntity
+        /// <summary>
+        /// Post a Character
+        /// </summary>
+        /// <param name="characterDto">Character creation requestBody</param>
+        /// <returns>ObjectResult  Character Id and status code 201(Created) </returns>
         [HttpPost]
         public async Task<IActionResult> AddCharacter(PostCharacterDto characterDto)
         {
             if (characterDto is null) { return NoContent(); }
 
             CharacterEntity character = null;
+
             try {
                 character = new CharacterEntity
                 {
@@ -131,24 +134,22 @@ namespace movieCharacterAPI.Controllers
                     Gender = characterDto.Gender,
                     Picture = characterDto.Picture
                 };
-            
                 await _context.Characters.AddAsync(character);
                 await _context.SaveChangesAsync();
-            
-            }catch (Exception ex) { }
+
+            }catch (Exception ex) {return BadRequest(ex);}
             return new ObjectResult(character.CharacterId) { StatusCode = (int)HttpStatusCode.Created};
         }
-         //Takes a parameter characterDto with data from input
-         //returns nocontent if characterDto is empty
-         //Takes the values from characterDto into character
-         //ads the data to Character and saves db changes
-         //returns objectResult with the the id and sets the statuscode to
-         //"Created" which returns 201 and indicates that the character was successfully created
+        
 
 
 
-        //Edit a Character and its movies
-             [HttpPut]
+        /// <summary>
+        /// Edit a Existing Character with the details in RequestBody
+        /// </summary>
+        /// <param name="command">Identifier and requestBody details</param>
+        /// <returns>ObjectResult Character Id and status code 202(Accepted)</returns>
+        [HttpPut]
         public async Task<IActionResult> UpdateCharacter([FromBody] UpdateCharacterCommand command)
         {
             if (command is null)
@@ -172,12 +173,14 @@ namespace movieCharacterAPI.Controllers
             }
             return new ObjectResult(character.CharacterId) { StatusCode = (int)HttpStatusCode.Accepted };
         }
-        /// <summary>
-        /// takes in parameter  UpdateCharacterCommand that contains characterDto and id 
-        /// finds the character with the Id specified from user
-        /// Changes the values from the request body
-        ///  returns "Accepted" which indicates that the character update was accepted
 
+
+
+        /// <summary>
+        /// Delete a Character with the given identifier
+        /// </summary>
+        /// <param name="id">Character Identifier</param>
+        /// <returns>Status Ok 200</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacterById(int id)
         {
@@ -188,19 +191,10 @@ namespace movieCharacterAPI.Controllers
 
                 _context.Characters.Remove(character);
                 await _context.SaveChangesAsync();
-
-             
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok();
         }
-        //Identifies and deletes the Character with the given Id
-        //returns not found if not found
-        //Returns OK()
-        //
     }
 }
 
