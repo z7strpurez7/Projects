@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CourseManagerAPI</name>
+    </assembly>
+    <members>
+        <member name="T:CourseManagerAPI.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.UpdatedEntities">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedEntities.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedEntities.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedEntities.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.UpdatedModels">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedModels.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedModels.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedModels.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.UpdatedCourseEntity">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedCourseEntity.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedCourseEntity.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedCourseEntity.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.UpdatedCourseEntity1">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedCourseEntity1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedCourseEntity1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.UpdatedCourseEntity1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.Updates">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.Updates.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.Updates.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.Updates.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.Updatess">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.Updatess.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.Updatess.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.Updatess.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.AddedStuff">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.AddedStuff.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.AddedStuff.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.AddedStuff.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.AddedStuffs">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.AddedStuffs.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.AddedStuffs.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.AddedStuffs.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.changedEntity">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEntity.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEntity.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEntity.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.changedEntityagain">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEntityagain.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEntityagain.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEntityagain.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CourseManagerAPI.Migrations.changedEnrollments">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEnrollments.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEnrollments.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CourseManagerAPI.Migrations.changedEnrollments.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
